@@ -1,0 +1,25 @@
+{
+  "formatter": {
+    "indentStyle": "space", // default is `tab`
+    "indentWidth": 4,
+    "lineWidth": 120 // default is `80`
+  },
+  "javascript": {
+    "formatter": {
+      "semicolons": "asNeeded"
+    }
+  },
+  "json": {
+    "formatter": {
+      "indentWidth": 2
+    }
+  },
+  "yaml": {
+    "formatter": {
+      "indentWidth": 2
+    }
+  },
+  "files": {
+    "includes": ["**", "!!**/data", "!!**/.github/actions"]
+  }
+}

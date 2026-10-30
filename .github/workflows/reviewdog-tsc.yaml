@@ -1,0 +1,16 @@
+name: reviewdog tsc runner
+
+on: [pull_request]
+jobs:
+  reviewdog-tsc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - uses: EPMatt/reviewdog-action-tsc@v1
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          fail_level: "any"
+          reporter: "github-pr-review"
+          filter_mode: "nofilter"

@@ -1,0 +1,19 @@
+{
+  "name": "update-firebot-dex-list",
+  "module": "src/index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "exec": "node src/index.ts",
+    "check": "node src/checklist.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.6.4",
+    "@tsconfig/node26": "^26.0.1",
+    "@types/node": "^26.6.6"
+  },
+  "peerDependencies": {
+    "typescript": "^7.0.2"
+  }
+}
