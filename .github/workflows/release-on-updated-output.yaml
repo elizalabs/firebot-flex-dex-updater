@@ -19,7 +19,7 @@ jobs:
 
       - name: get changelog
         run: |
-          last_sha=$(git rev-list -1 HEAD^ -- data/output.json)
+          last_sha=$(git rev-list -1 HEAD~1 -- data/output.json)
           git archive $last_sha data/output.json | tar -xO data/output.json > data/old.json
           echo $last_sha
           head data/old.json -n3
