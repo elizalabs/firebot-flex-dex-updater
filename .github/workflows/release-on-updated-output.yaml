@@ -19,6 +19,7 @@ jobs:
           version=$(node -e 'var fs = require("node:fs"); console.log(JSON.parse(fs.readFileSync("data/output.json", "utf-8"))[1])')
           echo "VERSION=${version//:/.}" >> "$GITHUB_ENV"
 
+      - run: git log
       - name: get changelog
         run: |
           last_sha=$(git rev-list -1 HEAD~1 -- data/output.json)
