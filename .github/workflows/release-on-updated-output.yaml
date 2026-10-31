@@ -3,6 +3,8 @@ on:
   push:
     branches: main
     paths: data/output.json
+permissions:
+  contents: write
 jobs:
   release-on-updated-output:
     runs-on: ubuntu-latest
