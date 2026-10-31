@@ -53,4 +53,7 @@ async function main() {
     writeFile("./data/output.json", JSON.stringify(output, null, 2))
 }
 
-main().catch(console.error)
+main().catch((e) => {
+    console.error(e)
+    process.exitCode = 1
+})
