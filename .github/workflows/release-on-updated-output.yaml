@@ -36,6 +36,9 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           custom_tag: ${{ env.VERSION }}
 
+      - name: copy data/output.json to output artifact name
+        run: cp data/output.json "data/dexid.txt"
+
       - name: Create a GitHub release
         id: release_tag
         if: steps.tag_version.outputs.new_tag != ''
@@ -44,12 +47,13 @@ jobs:
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
           body: |
-            # You most likely want to download output.json
-
             ${{ steps.tag_version.outputs.changelog }}
             The following pokemon were updated:
 
             ${{ env.changelog }}
+
+            ## Instructions
+            Download [dexid.txt](https://github.com/elizalabs/firebot-flex-dex-updater/releases/download/${{ steps.tag_version.outputs.new_tag }}/dexid.txt) and use that as the "DexID Text File" when following [NibsNooks' instructions](https://docs.google.com/document/d/1tE0USZYQvxiRtLvWo-ybimKuNKkK4yxgN19IEC6sq1o/edit?tab=t.0)
           prerelease: ${{ steps.tag_version.outputs.prerelease == 'true' }}
-          artifacts: "data/output.json"
+          artifacts: "data/dexid.txt"
           artifactErrorsFailBuild: true
