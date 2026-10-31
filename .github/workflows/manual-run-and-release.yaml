@@ -1,0 +1,33 @@
+on:
+  workflow_dispatch:
+    inputs:
+      pokedex:
+        description: 'Pokedex'
+        required: true
+        type: string
+
+jobs:
+  check-new-pokedex:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: $/.github/actions/release-setup-steps
+        with:
+          pokedex: ${{ inputs.pokedex }}
+
+  release-new-pokedex:
+    runs-on: ubuntu-latest
+    needs: check-new-pokedex
+    environment: release
+    steps:
+      - uses: $/.github/actions/release-setup-steps
+        with:
+          pokedex: ${{ inputs.pokedex }}
+      - run: echo "hi"
+      # commit new data/output.json to main
+      # create tag, with timestamp from new data/output.json as tag name
+      #  NOTE: need to replace : with . in string
+      # create release based on tag, including data/output.json as release artifact
+
+      # release url should look something like the following:
+      # https://github.com/elizalabs/firebot-flex-dex-updater/releases/download/[tag]/output.json
+      # ^ does "latest" work for the tag?

@@ -20,6 +20,6 @@
     }
   },
   "files": {
-    "includes": ["**", "!!**/data", "!!**/.github/actions"]
+    "includes": ["**", "!!**/data"]
   }
 }
