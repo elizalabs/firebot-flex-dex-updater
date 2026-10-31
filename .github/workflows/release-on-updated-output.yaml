@@ -21,30 +21,34 @@ jobs:
         run: |
           last_sha=$(git rev-list -1 ${{ github.sha }} -- data/output.json)
           git archive $last_sha data/output.json | tar -xO data/output.json > data/old.json
+          echo $last_sha
+          head data/old.json -n3
           changelog=$(npm run --silent check)
           echo 'changelog<<EOD' >> "$GITHUB_ENV"
           echo "$changelog" >> "$GITHUB_ENV"
           echo EOD >> "$GITHUB_ENV"
 
-      - name: push tag
-        id: tag_version
-        uses: mathieudutour/github-tag-action@af99e60ce8132224b8e6ebab5023449fe256ed46
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          custom_tag: ${{ env.VERSION }}
+      - run: echo "$changelog"
 
-      - name: Create a GitHub release
-        id: release_tag
-        if: steps.tag_version.outputs.new_tag != ''
-        uses: ncipollo/release-action@339a81892b84b4eeb0f6e744e4574d79d0d9b8dd
-        with:
-          tag: ${{ steps.tag_version.outputs.new_tag }}
-          name: Release ${{ steps.tag_version.outputs.new_tag }}
-          body: |
-            ${{ steps.tag_version.outputs.changelog }}
+      # - name: push tag
+      #   id: tag_version
+      #   uses: mathieudutour/github-tag-action@af99e60ce8132224b8e6ebab5023449fe256ed46
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     custom_tag: ${{ env.VERSION }}
 
-            The following pokemon were updated:
-            ${{ env.changelog }}
-          prerelease: ${{ steps.tag_version.outputs.prerelease == 'true' }}
-          artifacts: "data/output.json"
-          artifactErrorsFailBuild: true
+      # - name: Create a GitHub release
+      #   id: release_tag
+      #   if: steps.tag_version.outputs.new_tag != ''
+      #   uses: ncipollo/release-action@339a81892b84b4eeb0f6e744e4574d79d0d9b8dd
+      #   with:
+      #     tag: ${{ steps.tag_version.outputs.new_tag }}
+      #     name: Release ${{ steps.tag_version.outputs.new_tag }}
+      #     body: |
+      #       ${{ steps.tag_version.outputs.changelog }}
+
+      #       The following pokemon were updated:
+      #       ${{ env.changelog }}
+      #     prerelease: ${{ steps.tag_version.outputs.prerelease == 'true' }}
+      #     artifacts: "data/output.json"
+      #     artifactErrorsFailBuild: true
