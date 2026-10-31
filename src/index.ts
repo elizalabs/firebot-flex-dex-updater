@@ -35,6 +35,12 @@ async function main() {
     const translations: Translation = await loadTranslations()
     const pokedex: Pokedex = await loadJsonFromFile(LOCAL_POKEDEX_FILE)
 
+    pokedex.dex.sort(({ pokedexId: a }, { pokedexId: b }) => {
+        if (a === b) return 0
+        else if (Number(a) < Number(b)) return -1
+        else return 1
+    })
+
     const output = ["update_timestamp", new Date().toISOString()]
     for (const dex of pokedex.dex) {
         const translation = translations.translations[dex.name]
