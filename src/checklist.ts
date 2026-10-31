@@ -24,7 +24,7 @@ async function main() {
         new_only: [],
     }
 
-    console.log("--- OLD ONLY: ---")
+    console.log("--- REMOVED: ---")
     for (const id in oldData) {
         if (oldData[id] && !newData[id]) {
             diff.old_only.push(oldData[id])
@@ -32,7 +32,7 @@ async function main() {
         }
     }
 
-    console.log("--- NEW ONLY: ---")
+    console.log("--- ADDED: ---")
     for (const id in newData) {
         if (newData[id] && !oldData[id]) {
             diff.old_only.push(newData[id])

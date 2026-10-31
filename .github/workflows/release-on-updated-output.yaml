@@ -44,10 +44,11 @@ jobs:
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
           body: |
-            # you most likely want to download output.json
+            # You most likely want to download output.json
 
             ${{ steps.tag_version.outputs.changelog }}
             The following pokemon were updated:
+
             ${{ env.changelog }}
           prerelease: ${{ steps.tag_version.outputs.prerelease == 'true' }}
           artifacts: "data/output.json"
