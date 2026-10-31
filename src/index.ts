@@ -1,4 +1,5 @@
-import { readFile, writeFile } from "node:fs/promises"
+import { writeFile } from "node:fs/promises"
+import { loadJsonFromFile } from "./utils.ts"
 
 const LOCAL_TRANSLATIONS = false
 
@@ -17,14 +18,6 @@ interface Pokedex {
         name: string
         pokedexId: number
     }[]
-}
-
-export const loadJsonFromFile = async (filename: string) => {
-    const file = await readFile(filename)
-    if (!file) {
-        throw `file "${filename}" could not be read, or is empty`
-    }
-    return JSON.parse(file.toString())
 }
 
 const loadTranslations = async (): Promise<Translation> => {
@@ -53,4 +46,7 @@ async function main() {
     writeFile("./data/output.json", JSON.stringify(output, null, 2))
 }
 
-main().catch(console.error)
+main().catch((e) => {
+    console.error(e)
+    process.exitCode = 1
+})
