@@ -1,4 +1,4 @@
-import { copyFile, writeFile } from "node:fs/promises"
+import { copyFile, rm, writeFile } from "node:fs/promises"
 import { diffLists, loadJsonFromFile } from "./utils.ts"
 
 export const OLD_FILE = "./data/_tmp_old.json"
@@ -51,6 +51,8 @@ async function main() {
     await writeFile(NEW_FILE, JSON.stringify(output, null, 2))
 
     await diffLists(OLD_FILE, NEW_FILE)
+
+    await rm(OLD_FILE)
 }
 
 main().catch((e) => {
