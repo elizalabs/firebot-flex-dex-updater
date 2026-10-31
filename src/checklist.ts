@@ -7,6 +7,9 @@ const loadFromFile = async (file: string) => {
     const data = await loadJsonFromFile(file)
     const content: { [key: string]: string } = {}
     for (let i = 0; i < data.length; i += 2) {
+        if (data[i] === "update_timestamp") {
+            continue
+        }
         content[data[i]] = data[i + 1]
     }
     return content
