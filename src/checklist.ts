@@ -1,4 +1,4 @@
-import { loadJsonFromFile } from "./index.ts"
+import { loadJsonFromFile } from "./utils.ts"
 
 const OLD_FILE = "./data/old.json"
 const NEW_FILE = "./data/output.json"
@@ -28,7 +28,7 @@ async function main() {
     for (const id in oldData) {
         if (oldData[id] && !newData[id]) {
             diff.old_only.push(oldData[id])
-            console.error(`${id}: ${oldData[id]}`)
+            console.log(`${id}: ${oldData[id]}`)
         }
     }
 
@@ -36,7 +36,7 @@ async function main() {
     for (const id in newData) {
         if (newData[id] && !oldData[id]) {
             diff.old_only.push(newData[id])
-            console.error(`${id}: ${newData[id]}`)
+            console.log(`${id}: ${newData[id]}`)
         }
     }
 }
