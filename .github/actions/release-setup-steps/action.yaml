@@ -10,14 +10,14 @@ runs:
   steps:
     - name: Checkout code
       uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      with:
-        ref: $
 
     - name: npm install
       shell: bash
       run: npm install
     - name: save pokedex to json
-      run: echo ${{ inputs.pokedex }} > data/pokedex.json
+      env:
+        INPUT_POKEDEX: ${{ inputs.pokedex }}
+      run: echo "$INPUT_POKEDEX" > data/pokedex.json
       shell: bash
     - name: backup existing output.json
       shell: bash
