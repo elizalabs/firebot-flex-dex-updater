@@ -53,7 +53,17 @@ jobs:
             ${{ env.changelog }}
 
             ## Instructions
+
             Download [dexid.txt](https://github.com/elizalabs/firebot-flex-dex-updater/releases/download/${{ steps.tag_version.outputs.new_tag }}/dexid.txt) and use that as the "DexID Text File" when following [NibsNooks' instructions](https://docs.google.com/document/d/1tE0USZYQvxiRtLvWo-ybimKuNKkK4yxgN19IEC6sq1o/edit?tab=t.0)
+
+            Short version if you've done this before:
+            - click your username in Firebot's dashboard
+            - scroll to the metadata section
+            - find the `dexID` key and edit it (**NOTE:** if this key doesn't exist yet, you may need to fully follow [NibsNooks' instructions](https://docs.google.com/document/d/1tE0USZYQvxiRtLvWo-ybimKuNKkK4yxgN19IEC6sq1o/edit?tab=t.0))
+            - click into the text editor, press `ctrl+a` (or `cmd+a` on a Mac) to select all, then press `delete` or `backspace` to clear the editor
+            - paste the full contents of [dexid.txt](https://github.com/elizalabs/firebot-flex-dex-updater/releases/download/${{ steps.tag_version.outputs.new_tag }}/dexid.txt) into this text editor
+            - save
+
           prerelease: ${{ steps.tag_version.outputs.prerelease == 'true' }}
           artifacts: "data/dexid.txt"
           artifactErrorsFailBuild: true
