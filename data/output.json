@@ -1,6 +1,6 @@
 [
   "update_timestamp",
-  "2026-10-31T21:28:27.948Z",
+  "2026-11-02T03:13:43.348Z",
   "1",
   "bulbasaur",
   "2",
@@ -2677,6 +2677,14 @@
   "ursaluna (bloodmoon)",
   "10603",
   "mega staraptor",
+  "10622",
+  "mega scolipede",
+  "10623",
+  "mega scrafty",
+  "10626",
+  "mega golurk",
+  "10630",
+  "mega pyroar",
   "10633",
   "mega malamar",
   "10638",
@@ -2782,5 +2790,7 @@
   "100430",
   "blastoise (clone)",
   "100431",
-  "pcg riolu"
+  "pcg riolu",
+  "100432",
+  "pcg sylveon"
 ]
