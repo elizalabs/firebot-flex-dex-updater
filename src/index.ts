@@ -49,7 +49,7 @@ async function main() {
         }
 
         output.push(`${dex.pokedexId}`)
-        output.push(translation.toLowerCase())
+        output.push(translation.toLowerCase().replaceAll(".", ""))
     }
 
     await copyFile(NEW_FILE, OLD_FILE)
